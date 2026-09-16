@@ -1,353 +1,273 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VEV DeepCalm 14 en 1 | Magnesium Complex</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>DeepCalm 14 en 1 | Magnesium Complex</title>
+
   <style>
-    /* ================= RESET & BASE ================= */
+    /* Reset total para evitar cualquier margen o espacio blanco entre imágenes */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f4f8fb;
-      color: #1a2b49;
+      background-color: #0b1e36;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       overflow-x: hidden;
     }
-    .page-container {
+
+    /* Contenedor central vertical (ancho óptimo para móvil y legible en PC) */
+    .funnel-container {
       width: 100%;
-      max-width: 900px; /* Ancho óptimo tipo e-commerce / mobile-first */
-      background: #ffffff;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      max-width: 650px;
+      background-color: #ffffff;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
       position: relative;
     }
 
-    /* ================= BLOQUES DE IMAGEN ================= */
-    .visual-block {
+    /* Módulo de imagen continua */
+    .slice {
       position: relative;
       width: 100%;
-      line-height: 0; /* Elimina espacio en blanco bajo imágenes */
+      line-height: 0;
+      font-size: 0;
     }
-    .visual-block img {
+
+    .slice img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    /* ================= BOTONES Y OVERLAYS ================= */
-    .cta-overlay {
+    /* ================= ZONAS DE CLIC INTERACTIVAS ================= */
+
+    /* Botón general flotante sobre la imagen (Hero y CTA final) */
+    .cta-layer {
       position: absolute;
       bottom: 6%;
       left: 50%;
       transform: translateX(-50%);
-      width: 85%;
-      max-width: 440px;
-      z-index: 10;
+      width: 86%;
       line-height: normal;
+      z-index: 20;
     }
 
-    .btn-buy-primary {
+    .buy-btn-glow {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      background: linear-gradient(135deg, #0264d6 0%, #004fb0 100%);
-      color: #ffffff !important;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 18px 25px;
-      border-radius: 50px;
-      box-shadow: 0 10px 25px rgba(2, 100, 214, 0.45);
-      border: 2px solid rgba(255,255,255,0.4);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-align: center;
+      gap: 10px;
       width: 100%;
+      background: linear-gradient(135deg, #0264d6 0%, #004294 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      padding: 16px 20px;
+      border-radius: 99px;
+      box-shadow: 0 8px 24px rgba(2, 100, 214, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      animation: pulseGlow 2.2s infinite;
+      transition: transform 0.2s ease;
     }
 
-    .btn-buy-primary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(2, 100, 214, 0.6);
-      background: linear-gradient(135deg, #0972ee 0%, #035cc7 100%);
+    .buy-btn-glow:active {
+      transform: scale(0.97);
     }
 
-    /* Animación de pulso para máxima atención */
-    .pulse-effect {
-      animation: pulse 2.2s infinite;
-    }
-    @keyframes pulse {
+    @keyframes pulseGlow {
       0% { box-shadow: 0 0 0 0 rgba(2, 100, 214, 0.7); }
-      70% { box-shadow: 0 0 0 16px rgba(2, 100, 214, 0); }
+      70% { box-shadow: 0 0 0 14px rgba(2, 100, 214, 0); }
       100% { box-shadow: 0 0 0 0 rgba(2, 100, 214, 0); }
     }
 
-    /* ================= GRID DE OFERTAS WOOCOMMERCE ================= */
-    .pricing-overlay {
+    /* ================= TRIPLE BOTÓN SOBRE LA IMAGEN 10 (OFERTAS) ================= */
+    /* Este grid se alinea milimétricamente sobre los 3 frascos del diseño */
+    .pricing-hotspots {
       position: absolute;
-      bottom: 14%;
-      left: 5%;
-      width: 90%;
+      bottom: 12%; /* Ajusta si tu franja de botones queda más arriba o abajo */
+      left: 4%;
+      width: 92%;
       display: grid;
-      grid-template-columns: 1fr 1fr 1.15fr; /* El paquete 3 destaca */
-      gap: 12px;
+      grid-template-columns: 1fr 1fr 1.15fr; /* El de 3 frascos es más ancho */
+      gap: 8px;
       line-height: normal;
-      z-index: 10;
+      z-index: 30;
     }
 
-    .pricing-card-btn {
-      display: block;
-      text-align: center;
+    .card-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #0056b3;
       color: #ffffff;
       font-weight: 800;
-      font-size: 15px;
+      font-size: 14px;
       text-decoration: none;
-      padding: 12px 6px;
+      padding: 14px 4px;
       border-radius: 8px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .pricing-card-btn.popular {
-      background: #0264d6;
-      font-size: 17px;
-      padding: 14px 6px;
-      box-shadow: 0 6px 18px rgba(2, 100, 214, 0.45);
-    }
-
-    .pricing-card-btn:hover {
-      filter: brightness(1.15);
-      transform: translateY(-2px);
-    }
-
-    /* ================= FAQ ACORDEÓN ================= */
-    .faq-section {
-      padding: 45px 24px;
-      background: #ffffff;
-    }
-    .faq-title {
-      font-size: 28px;
-      font-weight: 900;
-      text-align: center;
-      color: #0b376d;
-      margin-bottom: 25px;
-    }
-    details {
-      background: #f1f7fc;
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin-bottom: 12px;
-      border: 1px solid #d9e7f5;
-      transition: 0.2s;
-    }
-    details[open] {
-      background: #e7f2fd;
-      border-color: #0264d6;
-    }
-    summary {
-      font-weight: 700;
-      font-size: 17px;
-      color: #0f2e59;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
       cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary::after {
-      content: "＋";
-      font-size: 20px;
-      font-weight: bold;
-      color: #0264d6;
-    }
-    details[open] summary::after {
-      content: "−";
-    }
-    .faq-content {
-      padding-top: 12px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #4a5d78;
+      text-transform: uppercase;
+      text-align: center;
     }
 
-    /* ================= BOTÓN FLOTANTE MÓVIL ================= */
-    .sticky-bottom-bar {
+    .card-trigger.pack-3 {
+      background: #0264d6;
+      font-size: 16px;
+      font-weight: 900;
+      box-shadow: 0 6px 18px rgba(2, 100, 214, 0.6);
+      border: 2px solid #ffffff;
+    }
+
+    .card-trigger:active {
+      transform: scale(0.96);
+    }
+
+    /* Botón flotante inferior que acompaña el scroll */
+    .sticky-footer {
       position: fixed;
       bottom: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .sticky-bottom-bar a {
-      max-width: 450px;
-      width: 100%;
-    }
-
-    /* Adaptación responsiva */
-    @media (max-width: 600px) {
-      .btn-buy-primary {
-        font-size: 16px;
-        padding: 15px 20px;
-      }
-      .pricing-card-btn {
-        font-size: 13px;
-        padding: 10px 4px;
-      }
+      max-width: 650px;
+      padding: 10px 18px;
+      background: rgba(11, 30, 54, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      line-height: normal;
     }
   </style>
 </head>
 <body>
 
-  <div class="page-container">
+  <div class="funnel-container">
 
-    <!-- 1. HERO PRINCIPAL -->
-    <section class="visual-block" id="hero">
-      <!-- Reemplaza "IMAGEN_1_HERO.jpg" por la URL real de tu imagen 1 -->
-      <img src="IMAGEN_1_HERO.jpg" alt="DeepCalm Magnesium Complex 14 en 1" loading="eager">
-      
-      <div class="cta-overlay">
-        <a href="#oferta" class="btn-buy-primary pulse-effect">
+    <!-- 01 HERO -->
+    <div class="slice">
+      <img src="img/01-hero.jpg" alt="DeepCalm Hero" />
+      <div class="cta-layer">
+        <a href="#modulo-oferta" class="buy-btn-glow">
           🛒 COMPRAR AHORA
         </a>
       </div>
-    </section>
+    </div>
 
-    <!-- 2. ¿TE IDENTIFICAS CON ESTO? -->
-    <section class="visual-block">
-      <img src="IMAGEN_2_PROBLEMAS.jpg" alt="Problemas de estrés y fatiga" loading="lazy">
-    </section>
+    <!-- 02 ¿TE IDENTIFICAS? -->
+    <div class="slice">
+      <img src="img/02-identificate.jpg" alt="Identifícate con esto" />
+    </div>
 
-    <!-- 3. INGREDIENTES / ¿POR QUÉ DEEPCALM? -->
-    <section class="visual-block">
-      <img src="IMAGEN_3_INGREDIENTES.jpg" alt="Fórmula premium 14 ingredientes" loading="lazy">
-    </section>
+    <!-- 03 INGREDIENTES -->
+    <div class="slice">
+      <img src="img/03-ingredientes.jpg" alt="Ingredientes DeepCalm" />
+    </div>
 
-    <!-- 4. TRANSFORMACIÓN (ANTES Y DESPUÉS) -->
-    <section class="visual-block">
-      <img src="IMAGEN_4_TRANSFORMACION.jpg" alt="Transforma tu rutina diaria con DeepCalm" loading="lazy">
-      
-      <div class="cta-overlay" style="bottom: 4%;">
-        <a href="#oferta" class="btn-buy-primary">
-          🌿 QUIERO SENTIR EL CAMBIO
+    <!-- 04 TRANSFORMACIÓN -->
+    <div class="slice">
+      <img src="img/04-transformacion.jpg" alt="Transforma tu rutina" />
+      <div class="cta-layer" style="bottom: 5%;">
+        <a href="#modulo-oferta" class="buy-btn-glow">
+          ✨ QUIERO PROBARLO HOY
         </a>
       </div>
-    </section>
+    </div>
 
-    <!-- 5. TAMAÑO REAL / EXPERIENCIA -->
-    <section class="visual-block">
-      <img src="IMAGEN_5_TAMANO_REAL.jpg" alt="Tamaño real fácil de llevar" loading="lazy">
-    </section>
+    <!-- 05 TAMAÑO REAL -->
+    <div class="slice">
+      <img src="img/05-tamano-real.jpg" alt="Tamaño real" />
+    </div>
 
-    <!-- 6. SOLO 1 GOMITA AL DÍA -->
-    <section class="visual-block">
-      <img src="IMAGEN_6_UNA_GOMITA.jpg" alt="Solo una gomita al día deliciosa y sin azúcar" loading="lazy">
-    </section>
+    <!-- 06 SOLO 1 GOMITA -->
+    <div class="slice">
+      <img src="img/06-una-gomita.jpg" alt="Solo 1 gomita al día" />
+    </div>
 
-    <!-- 7. TESTIMONIOS Y COMUNIDAD -->
-    <section class="visual-block">
-      <img src="IMAGEN_7_TESTIMONIOS.jpg" alt="Lo que dicen nuestros clientes" loading="lazy">
-    </section>
+    <!-- 07 TESTIMONIOS -->
+    <div class="slice">
+      <img src="img/07-testimonios.jpg" alt="Testimonios reales" />
+    </div>
 
-    <!-- 8. VIDEOS / CLIENTES REALES -->
-    <section class="visual-block">
-      <img src="IMAGEN_8_VIDEOS.jpg" alt="Historias y fotos reales" loading="lazy">
-    </section>
+    <!-- 08 VIDEOS -->
+    <div class="slice">
+      <img src="img/08-videos.jpg" alt="Videos de clientes" />
+    </div>
 
-    <!-- 9. TABLA DE OFERTAS DIRECTAS A WOOCOMMERCE -->
-    <section class="visual-block" id="oferta">
-      <img src="IMAGEN_9_OFERTA.jpg" alt="Oferta especial DeepCalm" loading="lazy">
+    <!-- 09 FOTOS REALES -->
+    <div class="slice">
+      <img src="img/09-fotos-reales.jpg" alt="Fotos de la comunidad" />
+    </div>
 
-      <!-- BOTONES DE COMPRA SUPERPUESTOS SOBRE CADA PAQUETE -->
-      <div class="pricing-overlay">
-        <!-- 1 FRASCO -->
-        <a href="https://tutienda.com/checkout/?add-to-cart=101" class="pricing-card-btn">
-          COMPRAR (1)
+    <!-- 10 OFERTAS (CONEXIÓN DIRECTA A WOOCOMMERCE) -->
+    <div class="slice" id="modulo-oferta">
+      <img src="img/10-ofertas.jpg" alt="Oferta especial" />
+
+      <div class="pricing-hotspots">
+        <!-- BOTÓN 1 FRASCO -->
+        <a href="javascript:void(0)" onclick="irACheckout(URL_PAQUETE_1)" class="card-trigger">
+          COMPRAR
         </a>
 
-        <!-- 2 FRASCOS -->
-        <a href="https://tutienda.com/checkout/?add-to-cart=102" class="pricing-card-btn">
-          COMPRAR (2)
+        <!-- BOTÓN 2 FRASCOS -->
+        <a href="javascript:void(0)" onclick="irACheckout(URL_PAQUETE_2)" class="card-trigger">
+          COMPRAR
         </a>
 
-        <!-- 3 FRASCOS (MÁS VENDIDO) -->
-        <a href="https://tutienda.com/checkout/?add-to-cart=103" class="pricing-card-btn popular">
-          COMPRAR (3) ⭐
-        </a>
-      </div>
-    </section>
-
-    <!-- 10. PREGUNTAS FRECUENTES (FAQ) -->
-    <section class="faq-section">
-      <h2 class="faq-title">Preguntas Frecuentes</h2>
-
-      <details>
-        <summary>¿Cuántas gomitas debo tomar al día?</summary>
-        <div class="faq-content">
-          Solo 1 gomita al día. Su potente fórmula 14 en 1 está concentrada para darte los nutrientes necesarios en una sola toma.
-        </div>
-      </details>
-
-      <details>
-        <summary>¿Cuánto tarda en llegar mi pedido?</summary>
-        <div class="faq-content">
-          Los envíos en USA demoran entre 3 y 5 días hábiles. Para envíos internacionales el tiempo promedio es de 5 a 7 días hábiles con seguimiento en tiempo real.
-        </div>
-      </details>
-
-      <details>
-        <summary>¿Contiene azúcar o gluten?</summary>
-        <div class="faq-content">
-          No. Es una fórmula limpia, libre de azúcares añadidos, sin gluten y apta para adultos que buscan cuidar su nutrición.
-        </div>
-      </details>
-
-      <details>
-        <summary>¿Cómo realizo el pago de forma segura?</summary>
-        <div class="faq-content">
-          Aceptamos todas las tarjetas de crédito, débito y PayPal a través de nuestra pasarela encriptada de 256 bits para total seguridad.
-        </div>
-      </details>
-    </section>
-
-    <!-- 11. CIERRE Y GARANTÍA -->
-    <section class="visual-block" style="margin-bottom: 70px;">
-      <img src="IMAGEN_10_CIERRE.jpg" alt="Tu bienestar empieza hoy" loading="lazy">
-      <div class="cta-overlay" style="bottom: 10%;">
-        <a href="#oferta" class="btn-buy-primary pulse-effect">
-          🚀 OBTENER MI DEEPCALM AHORA
+        <!-- BOTÓN 3 FRASCOS (MÁS VENDIDO) -->
+        <a href="javascript:void(0)" onclick="irACheckout(URL_PAQUETE_3)" class="card-trigger pack-3">
+          COMPRAR ⭐
         </a>
       </div>
-    </section>
+    </div>
+
+    <!-- 11 CTA FINAL -->
+    <div class="slice" style="margin-bottom: 60px;">
+      <img src="img/11-cta-final.jpg" alt="Cierre y Garantía" />
+      <div class="cta-layer" style="bottom: 8%;">
+        <a href="#modulo-oferta" class="buy-btn-glow">
+          👉 PEDIR MI DEEPCALM AHORA
+        </a>
+      </div>
+    </div>
 
   </div>
 
-  <!-- BOTÓN FLOTANTE PERMANENTE EN PANTALLA -->
-  <aside class="sticky-bottom-bar">
-    <a href="#oferta" class="btn-buy-primary" style="padding: 12px 20px; font-size: 16px;">
-      🛒 PEDIR CON ENVÍO RÁPIDO
+  <!-- BARRA STICKY INFERIOR -->
+  <div class="sticky-footer">
+    <a href="#modulo-oferta" class="buy-btn-glow" style="padding: 12px; font-size: 16px;">
+      🛒 APROVECHAR DESCUENTO (ENVÍO RÁPIDO)
     </a>
-  </aside>
+  </div>
+
+  <!-- ================= LÓGICA DE ENLACES A WOOCOMMERCE ================= -->
+  <script>
+    // Solo sustituye aquí con tu dominio y los IDs de WooCommerce
+    const DOMINIO_WOO = "https://tutienda.com"; // Sin barra al final
+
+    const ID_1_FRASCO = "101";
+    const ID_2_FRASCOS = "102";
+    const ID_3_FRASCOS = "103";
+
+    // Enlace WooCommerce directo al checkout agregando el producto de inmediato
+    const URL_PAQUETE_1 = `${DOMINIO_WOO}/finalizar-compra/?add-to-cart=${ID_1_FRASCO}`;
+    const URL_PAQUETE_2 = `${DOMINIO_WOO}/finalizar-compra/?add-to-cart=${ID_2_FRASCOS}`;
+    const URL_PAQUETE_3 = `${DOMINIO_WOO}/finalizar-compra/?add-to-cart=${ID_3_FRASCOS}`;
+
+    function irACheckout(url) {
+      window.location.href = url;
+    }
+  </script>
 
 </body>
 </html>
